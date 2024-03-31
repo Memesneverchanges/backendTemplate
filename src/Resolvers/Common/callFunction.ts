@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize";
-import { logger } from "../..";
+import { Logger } from "../..";
 
 export async function callFunction(callingFunction: () => Promise<any>) {
     try {
         return callingFunction()
     }
     catch (error) {
-        logger.error(error)
+        Logger.error(error)
         throw error
     }
 }

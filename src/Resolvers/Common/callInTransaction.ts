@@ -1,5 +1,5 @@
 import { Sequelize, Transaction } from "sequelize";
-import { logger, sequelize } from "../..";
+import { Logger, sequelize } from "../..";
 
 export async function callInTransaction(callingFunction: (t: Transaction) => Promise<any>, options?: { sequelizeInstance?: Sequelize }) {
     let t: Transaction
@@ -11,7 +11,7 @@ export async function callInTransaction(callingFunction: (t: Transaction) => Pro
     catch (error) {
         if (t)
             await t.rollback()
-        logger.error(error)
+        Logger.error(error)
         throw error
     }
 }
