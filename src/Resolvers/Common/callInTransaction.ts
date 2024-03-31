@@ -9,9 +9,13 @@ export async function callInTransaction(callingFunction: (t: Transaction) => Pro
         return callingFunction(t)
     }
     catch (error) {
-        if (t)
-            await t.rollback()
         Logger.error(error)
-        throw error
+        try {
+            if (t)
+                await t.rollback()
+        }
+        finally {
+            throw error
+        }
     }
 }
