@@ -11,7 +11,7 @@ import { Resolvers } from "./Resolvers"
 import { Sequelize } from "sequelize"
 import log4js from "log4js"
 import { graphQLModelNameParser } from "./Middlewares/graphQLModelNameParser"
-import { logger } from "./config.js"
+import { logger } from "./config/config.js"
 
 const app = express()
 
@@ -44,7 +44,7 @@ apolloServer.start().then(() => {
         expressMiddleware(apolloServer),
 
     );
-    httpServer.listen(3100, () => {
+    httpServer.listen(3000, () => {
         console.log(`🚀 Server ready at http://${hostname()}:3100/graphql`)
         Logger.info(`🚀 Server ready at http://${hostname()}:3100/graphql`)
     })
